@@ -1,7 +1,5 @@
-# PlateVision-Midterm-Blueprint
+# PlateVision Midterm Blueprint
 Midterm Project Computer Vision
-
-# PlateVision
 
 ## Team Members
 - Camila Ferreira da Silva
