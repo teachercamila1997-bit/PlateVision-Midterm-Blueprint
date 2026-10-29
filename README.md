@@ -33,19 +33,29 @@ The system is designed as an evidence-assistance tool rather than a system that
 guarantees vehicle identification.
 
 ## Technical Approach
-The proposed pipeline includes:
 
-Security-Camera Video → Vehicle Detection → Vehicle Tracking →
-License Plate Detection → Best-Frame Selection → Image Enhancement →
-OCR → Evidence Summary
+The proposed final pipeline includes:
 
-Proposed technologies include:
-- YOLO
-- ByteTrack
-- OpenCV
-- EasyOCR or PaddleOCR
-- Python / PyTorch
-- Google Colab
+Security-Camera Video → Vehicle Detection → Vehicle Tracking → License Plate Detection → Best-Frame Selection → Image Enhancement → OCR → Evidence Summary
+
+**Selected technologies:**
+
+- **Vehicle Detection:** YOLOv8 pretrained on COCO, selected for its ability to detect common vehicle classes without initial training.
+- **License Plate Detection:** YOLOv8 with plate-specific weights, selected for bounding-box localization. The weights will be selected and evaluated during development.
+- **Vehicle Tracking:** ByteTrack, used to associate vehicle detections across video frames.
+- **Image Processing:** OpenCV, used for frame extraction, enhancement, and best-frame selection.
+- **OCR:** EasyOCR, selected to extract candidate plate characters for human verification.
+- **Framework:** Python and PyTorch.
+- **Development Environment:** Google Colab.
+
+**First Working Demo:**
+
+The initial prototype will focus on a simplified pipeline:
+
+Video Input → License Plate Detection → Bounding Box Output
+
+Vehicle tracking, best-frame selection, enhancement, and OCR will be integrated after the basic detection pipeline is working.
+
 
 ## Data Plan
 **Primary dataset:** UFPR-ALPR
@@ -59,6 +69,16 @@ Proposed technologies include:
 A small number of security-camera video samples will also be used to test the
 complete application in realistic conditions.
 
+**Backup dataset:** [Kaggle — License Plate Detection Dataset](https://www.kaggle.com/datasets/barkataliarbab/license-plate-detection-dataset-10125-images)
+
+- Approximately 10,125 images
+- YOLO-format license plate bounding-box annotations
+- Downloaded locally
+- Intended for plate detection training and evaluation if UFPR-ALPR access is delayed
+- OCR evaluation will require separate character-level ground truth
+
+Additional dataset documentation is available in `data/README.md`.
+
 ## Success Metrics
 - License Plate Detection: target ≥ 0.70 mAP@50
 - OCR Accuracy: target ≥ 70% on readable plates
@@ -66,11 +86,13 @@ complete application in realistic conditions.
   usable plate frame
 
 ## Milestone Plan
-- Week 10 — Blueprint
-- Week 11 — First Working Demo
-- Weeks 12–13 — Make It Yours
-- Week 14 — Improve & Measure
-- Week 15 — Package & Present
+
+- **Week 10 — Blueprint:** Finalize the project scope, datasets, technical approach, and success metrics.
+- **Week 11 — First Working Demo:** Process a sample video and display detected license plate bounding boxes.
+- **Weeks 12–13 — Make It Yours:** Integrate vehicle detection, ByteTrack tracking, best-frame selection, image enhancement, and EasyOCR.
+- **Week 14 — Improve & Measure:** Evaluate detection and OCR performance, analyze errors, and document limitations.
+- **Week 15 — Package & Present:** Finalize the application, documentation, demonstration, and presentation.
+
 
 ## Risks and Plan B
 
@@ -87,10 +109,12 @@ OCR may produce different plate readings across video frames.
 the best candidate with confidence information for human verification.
 
 ## Resources
-- Compute: Google Colab
-- Estimated Cost: $0
-- Models/Tools: YOLO, ByteTrack, OpenCV, OCR
-- Dataset: UFPR-ALPR — access requested
+- **Compute:** Google Colab
+- **Estimated Cost:** $0
+- **Models/Tools:** YOLOv8, ByteTrack, OpenCV, EasyOCR, Python, PyTorch
+- **Primary Dataset:** UFPR-ALPR — access requested
+- **Backup Dataset:** Kaggle License Plate Detection Dataset — downloaded locally
+
 
 ## AI Usage
 AI-assisted work is documented in:
