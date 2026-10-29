@@ -71,11 +71,14 @@ complete application in realistic conditions.
 
 **Backup dataset:** [Kaggle — License Plate Detection Dataset](https://www.kaggle.com/datasets/barkataliarbab/license-plate-detection-dataset-10125-images)
 
+Available on Drive: https://drive.google.com/file/d/12IZLoBxhzAEO9SBdvU4Q0lsSPQ3jDGoe/view?usp=sharing 
+
 - Approximately 10,125 images
 - YOLO-format license plate bounding-box annotations
 - Downloaded locally
 - Intended for plate detection training and evaluation if UFPR-ALPR access is delayed
 - OCR evaluation will require separate character-level ground truth
+
 
 Additional dataset documentation is available in `data/README.md`.
 
